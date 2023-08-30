@@ -1,15 +1,49 @@
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [orders, setOrders] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const [lastOrderNumber, setLastOrderNumber] = useState(1);
+
+  const handleChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  const nextOrderNumber = () => {
+    setOrders(current => [...current, lastOrderNumber]);
+    setLastOrderNumber(Number(lastOrderNumber) + 1);
+  }
+
+  const customOrderNumber = () => {
+    setOrders(current => [...current, inputText]);
+    setLastOrderNumber(Number(inputText) + 1);
+    setInputText('');
+  }
+
+  const createOrderClick = () => {
+    inputText === '' ? nextOrderNumber() : customOrderNumber();
+  }
+
   return (
-    <Routes>
-      <Route exact path='/' element={<HomePage/>}/>
-      <Route exact path='/login' element={<LoginPage/>}/>
-      <Route exact path='/register' element={<RegisterPage/>}/>
-    </Routes>
+    <div className="App">
+      <div>
+        <input onChange={handleChange} value={inputText} className="createOrder" type='number' placeholder='Enter order number' />
+        <button onClick={createOrderClick} >Create order</button>
+      </div>
+      <div className="scoreboard">
+        <div className="leftScoreboard">
+          {orders.map((element, index) => {
+            return (
+              <div key={index} className="orderCook">
+                <p>{element}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="rightScoreboard"></div>
+      </div>
+    </div>
   );
 }
 
