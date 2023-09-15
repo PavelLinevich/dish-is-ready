@@ -1,50 +1,95 @@
-import React, { useState } from 'react';
-import './Scoreboard.css';
+import React, { useState } from 'react'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import './Scoreboard.css'
 
 function Scoreboard() {
-  const [orders, setOrders] = useState([]);
-  const [inputText, setInputText] = useState("");
-  const [lastOrderNumber, setLastOrderNumber] = useState(1);
+  const [orders, setOrders] = useState([
+    { id: 1, status: 'ready' }
+  ])
+  const [inputText, setInputText] = useState("")
+  const [lastOrderNumber, setLastOrderNumber] = useState(2)
 
   const handleChange = (e) => {
-    setInputText(e.target.value);
-  };
-
-  const nextOrderNumber = () => {
-    setOrders(current => [...current, lastOrderNumber]);
-    setLastOrderNumber(Number(lastOrderNumber) + 1);
-  }
-
-  const customOrderNumber = () => {
-    setOrders(current => [...current, inputText]);
-    setLastOrderNumber(Number(inputText) + 1);
-    setInputText('');
+    setInputText(e.currentTarget.value)
   }
 
   const createOrderClick = () => {
-    inputText === '' ? nextOrderNumber() : customOrderNumber();
+    inputText === '' ? nextOrderNumber() : customOrderNumber()
+  }
+
+  const nextOrderNumber = () => {
+    const order = {
+      id: lastOrderNumber,
+      status: 'open',
+    }
+    setOrders([...orders, order]);
+    setLastOrderNumber(Number(lastOrderNumber) + 1)
+  }
+
+  const customOrderNumber = () => {
+    const order = {
+      id: inputText,
+      status: 'open',
+    }
+    setOrders([...orders, order]);
+    setLastOrderNumber(Number(inputText) + 1)
+    setInputText('')
+  }
+
+  const onKeyPressHandler = (e) => {
+    if (e.key === 'Enter') {
+      createOrderClick()
+    }
+  }
+
+  const changeOrderStatusClick = () => {
+    alert(12)
   }
 
   return (
     <div>
-      <div className='inputOrderNumber'>
-        <input onChange={handleChange} value={inputText} className="createOrder" type='number' placeholder='Enter order number' />
-        <button onClick={createOrderClick} className="createOrderButton" >Create order</button>
+      <div style={{ padding: '10px', display: 'flex', }}>
+        <TextField
+          label='Add order number'
+          variant='standard'
+          onChange={handleChange}
+          onKeyDown={onKeyPressHandler}
+          value={inputText}
+          className='createOrder'
+          type='number'
+        />
+        <Button
+          onClick={createOrderClick}
+          style={{ marginLeft: '10px' }}
+          variant='contained'
+          color='error'
+        >
+          Create order
+        </Button>
       </div>
-      <div className="scoreboard">
-        <div className="leftScoreboard">
-          {orders.map((element, index) => {
+      <div className='scoreboard'>
+        <div className='leftScoreboard' onClick={changeOrderStatusClick}>
+          {orders.filter(order => order.status === 'open').map((element) => {
             return (
-              <div key={index} className="orderCook">
-                <p>{element}</p>
+              <div key={element.id} className='orderCook'>
+                <p>{element.id}</p>
               </div>
-            );
+            )
           })}
         </div>
-        <div className="rightScoreboard"></div>
+        <div className='rightScoreboard' onClick={changeOrderStatusClick}>
+          {orders.filter(order => order.status === 'ready').map((element) => {
+            return (
+              <div key={element.id} className='orderCook'>
+                <p>{element.id}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
-export default Scoreboard;
+export default Scoreboard
