@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import './Scoreboard.css'
 
 function Scoreboard() {
@@ -43,8 +45,14 @@ function Scoreboard() {
     }
   }
 
-  const changeOrderStatusClick = () => {
-    alert(12)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const open = anchorEl
+  const changeOrderStatusClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = (e) => {
+    setAnchorEl(null)
+    console.log(e);
   }
 
   return (
@@ -69,21 +77,45 @@ function Scoreboard() {
         </Button>
       </div>
       <div className='scoreboard'>
-        <div className='leftScoreboard' onClick={changeOrderStatusClick}>
+        <div className='leftScoreboard'>
           {orders.filter(order => order.status === 'open').map((element) => {
             return (
-              <div key={element.id} className='orderCook'>
-                <p>{element.id}</p>
+              <div>
+                <Button
+                  key={element.id}
+                  variant='contained'
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={changeOrderStatusClick}
+                >
+                  <p>{element.id}</p>
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{ 'aria-labelledby': 'basic-button' }}
+                >
+                  <MenuItem onClick={handleClose}>Order ready</MenuItem>
+                  <MenuItem onClick={handleClose}>Order close</MenuItem>
+                </Menu>
               </div>
             )
           })}
         </div>
-        <div className='rightScoreboard' onClick={changeOrderStatusClick}>
+        <div className='rightScoreboard'>
           {orders.filter(order => order.status === 'ready').map((element) => {
             return (
-              <div key={element.id} className='orderCook'>
+              <Button
+                key={element.id}
+                variant='contained'
+                onClick={changeOrderStatusClick}
+              >
                 <p>{element.id}</p>
-              </div>
+              </Button>
             )
           })}
         </div>
