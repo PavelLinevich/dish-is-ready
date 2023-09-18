@@ -43,6 +43,22 @@ function Scoreboard() {
     }
   }
 
+  const changeOrderStatus = (id, status) => {
+    let order = orders.filter(el => el.id === id)
+    if (order) {
+      order[0].status = 'ready';
+      setOrders([...orders]);
+    }
+  }
+
+  const closeOrderStatus = (id, status) => {
+    let order = orders.filter(el => el.id === id)
+    if (order) {
+      order[0].status = 'close';
+      setOrders([...orders]);
+    }
+  }
+
   return (
     <div>
       <div style={{ padding: '10px', display: 'flex', }}>
@@ -67,25 +83,33 @@ function Scoreboard() {
       <div className='scoreboard'>
         <div className='leftScoreboard'>
           {orders.filter(order => order.status === 'open').map((element) => {
+            const changeOrderStatusClick = () => { changeOrderStatus(element.id, element.status) }
             return (
-                <Button
-                  key={element.id}
-                  variant='contained'
-
-                >
-                  <p>{element.id}</p>
-                </Button>
+              <Button
+                size='large'
+                key={element.id}
+                variant='contained'
+                color='error'
+                onClick={changeOrderStatusClick}
+                style={{ fontSize: '2rem' }}
+              >
+                {element.id}
+              </Button>
             )
           })}
         </div>
         <div className='rightScoreboard'>
           {orders.filter(order => order.status === 'ready').map((element) => {
+            const closeOrderStatusClick = () => { closeOrderStatus(element.id, element.status) }
             return (
               <Button
                 key={element.id}
                 variant='contained'
+                color="success"
+                onClick={closeOrderStatusClick}
+                style={{ fontSize: '2rem' }}
               >
-                <p>{element.id}</p>
+                {element.id}
               </Button>
             )
           })}
