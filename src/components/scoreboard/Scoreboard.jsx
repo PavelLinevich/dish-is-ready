@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+
+
+
 import './Scoreboard.css'
 
 function Scoreboard() {
-  const [orders, setOrders] = useState([
+  const [orders, setOrders] = React.useState([
     { id: 1, status: 'ready' }
   ])
-  const [inputText, setInputText] = useState("")
-  const [lastOrderNumber, setLastOrderNumber] = useState(2)
+  const [inputText, setInputText] = React.useState("")
+  const [lastOrderNumber, setLastOrderNumber] = React.useState(2)
 
   const handleChange = (e) => {
     setInputText(e.currentTarget.value)
@@ -95,6 +98,7 @@ function Scoreboard() {
               >
                 {element.id}
               </Button>
+
             )
           })}
         </div>
@@ -120,3 +124,4 @@ function Scoreboard() {
 }
 
 export default Scoreboard
+
