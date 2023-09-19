@@ -5,15 +5,29 @@ import clsx from 'clsx'
 import { styled, Box } from '@mui/system'
 import { Modal } from '@mui/base/Modal'
 
-export function ModalUnstyled() {
+export function ModalUnstyled(props) {
   const [open, setOpen] = React.useState(false)
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const openHandleChange = () => {
+    props.element.status = 'open'
+    props.setOrders([...props.orders])
+  }
+  const readyHandleChange = () => {
+    props.element.status = 'ready'
+    props.setOrders([...props.orders])
+  }
+  const cancelHandleChange = () => {
+    props.element.status = 'cancel'
+    props.setOrders([...props.orders])
+  }
 
   return (
     <div>
       <TriggerButton type="button" onClick={handleOpen}>
-        Open modal
+        {props.element.id}
       </TriggerButton>
       <StyledModal
         aria-labelledby="unstyled-modal-title"
@@ -23,13 +37,42 @@ export function ModalUnstyled() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title">Change order № 2 status:</h2>
-          <Button id="unstyled-modal-description">open</Button>
-          <Button id="unstyled-modal-description">ready</Button>
-          <Button id="unstyled-modal-description">close</Button>
+          <h2 id="unstyled-modal-title" style={{ textAlign: 'center' }}>Select order status No. {props.element.id}:</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+            <Button
+              id="unstyled-modal-description"
+              variant='outlined'
+              color='inherit'
+              style={{ fontSize: '1rem', margin: '5px' }}
+              onClick={openHandleChange}
+              disabled={props.element.status === 'open'}
+            >
+              Open
+            </Button>
+            <Button
+              id="unstyled-modal-description"
+              variant='outlined'
+              color='inherit'
+              style={{ fontSize: '1rem', margin: '5px' }}
+              onClick={readyHandleChange}
+              disabled={props.element.status === 'ready'}
+            >
+              Ready
+            </Button>
+            <Button
+              id="unstyled-modal-description"
+              variant='outlined'
+              color='inherit'
+              style={{ fontSize: '1rem', margin: '5px' }}
+              onClick={cancelHandleChange}
+              disabled={props.element.status === 'close'}
+            >
+              Close
+            </Button>
+          </div>
         </Box>
       </StyledModal>
-    </div>
+    </div >
   )
 }
 
@@ -96,14 +139,11 @@ const style = (theme) => ({
 const TriggerButton = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 2rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
-  line-height: 1.5;
-  background: transparent;
+  padding: 9px 18px;
+  margin: 5px;
+  background: #ffffff;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
 

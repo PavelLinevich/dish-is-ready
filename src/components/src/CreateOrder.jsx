@@ -22,7 +22,7 @@ export function CreateOrder(props) {
       id: props.inputText,
       status: 'open',
     }
-    props.setOrders([...props.orders, order]);
+    props.setOrders([...props.orders, order])
     props.setLastOrderNumber(Number(props.inputText) + 1)
     props.setInputText('')
   }

@@ -4,9 +4,9 @@ import { Scoreboard } from './components/src/Scoreboard'
 
 export function App() {
 
-  const [orders, setOrders] = React.useState([{ id: 1, status: 'ready' }])
+  const [orders, setOrders] = React.useState([])
   const [inputText, setInputText] = React.useState("")
-  const [lastOrderNumber, setLastOrderNumber] = React.useState(2)
+  const [lastOrderNumber, setLastOrderNumber] = React.useState(1)
 
   return (
     <div className="App">
