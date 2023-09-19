@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { styled, Box } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import * as React from 'react'
+import Button from '@mui/material/Button'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { styled, Box } from '@mui/system'
+import { Modal } from '@mui/base/Modal'
 
 export function ModalUnstyled() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   return (
     <div>
@@ -30,30 +30,30 @@ export function ModalUnstyled() {
         </Box>
       </StyledModal>
     </div>
-  );
+  )
 }
 
 const Backdrop = React.forwardRef((props, ref) => {
-  const { open, className, ...other } = props;
+  const { open, className, ...other } = props
   return (
     <div
       className={clsx({ 'MuiBackdrop-open': open }, className)}
       ref={ref}
       {...other}
     />
-  );
-});
+  )
+})
 
 Backdrop.propTypes = {
   className: PropTypes.string.isRequired,
   open: PropTypes.bool,
-};
+}
 
 const blue = {
   200: '#99CCF3',
   400: '#3399FF',
   500: '#007FFF',
-};
+}
 
 const grey = {
   50: '#f6f8fa',
@@ -66,7 +66,7 @@ const grey = {
   700: '#424a53',
   800: '#32383f',
   900: '#24292f',
-};
+}
 
 const StyledModal = styled(Modal)`
   position: fixed;
@@ -75,7 +75,7 @@ const StyledModal = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
@@ -83,7 +83,7 @@ const StyledBackdrop = styled(Backdrop)`
   inset: 0;
   background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
-`;
+`
 
 const style = (theme) => ({
   width: 400,
@@ -91,7 +91,7 @@ const style = (theme) => ({
   padding: '16px 32px 24px 32px',
   backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
   boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
-});
+})
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
@@ -117,4 +117,4 @@ const TriggerButton = styled('button')(
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
-);
+)

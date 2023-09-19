@@ -13,7 +13,7 @@ export function CreateOrder(props) {
       id: props.lastOrderNumber,
       status: 'open',
     }
-    props.setOrders([...props.orders, order]);
+    props.setOrders([...props.orders, order])
     props.setLastOrderNumber(Number(props.lastOrderNumber) + 1)
   }
 

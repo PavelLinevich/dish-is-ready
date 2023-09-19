@@ -6,40 +6,38 @@ export function Scoreboard(props) {
   const changeOrderStatus = (id, status) => {
     let order = props.orders.filter(el => el.id === id)
     if (order) {
-      order[0].status = 'ready';
-      props.setOrders([...props.orders]);
+      order[0].status = 'ready'
+      props.setOrders([...props.orders])
     }
   }
 
   const closeOrderStatus = (id, status) => {
     let order = props.orders.filter(el => el.id === id)
     if (order) {
-      order[0].status = 'close';
-      props.setOrders([...props.orders]);
+      order[0].status = 'close'
+      props.setOrders([...props.orders])
     }
   }
 
   return (
-    <div style={{ padding: '10px', display: 'flex', gap: '10px' }}>
+    <div style={{ padding: '5px', display: 'flex' }}>
       <div style={{ width: '50%' }}>
         {props.orders.filter(order => order.status === 'open').map((element) => {
           const changeOrderStatusClick = () => { changeOrderStatus(element.id, element.status) }
           return (
             <Button
-              size='large'
               key={element.id}
               variant='contained'
               color='error'
               onClick={changeOrderStatusClick}
-              style={{ fontSize: '2rem' }}
+              style={{ fontSize: '2rem', margin: '5px' }}
             >
               {element.id}
             </Button>
-
           )
         })}
       </div>
-      <div className='rightScoreboard'>
+      <div style={{ width: '50%' }}>
         {props.orders.filter(order => order.status === 'ready').map((element) => {
           const closeOrderStatusClick = () => { closeOrderStatus(element.id, element.status) }
           return (
@@ -48,7 +46,7 @@ export function Scoreboard(props) {
               variant='contained'
               color="success"
               onClick={closeOrderStatusClick}
-              style={{ fontSize: '2rem' }}
+              style={{ fontSize: '2rem', margin: '5px' }}
             >
               {element.id}
             </Button>
@@ -56,5 +54,5 @@ export function Scoreboard(props) {
         })}
       </div>
     </div>
-  );
+  )
 }

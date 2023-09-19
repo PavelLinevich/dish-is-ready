@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { CreateOrder } from './components/src/CreateOrder';
-import { Scoreboard } from './components/src/Scoreboard';
-import './App.css';
+import { CreateOrder } from './components/src/CreateOrder'
+import { Scoreboard } from './components/src/Scoreboard'
 
-function App() {
+export function App() {
 
   const [orders, setOrders] = React.useState([{ id: 1, status: 'ready' }])
   const [inputText, setInputText] = React.useState("")
@@ -26,5 +25,3 @@ function App() {
     </div>
   )
 }
-
-export default App;
