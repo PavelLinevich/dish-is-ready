@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dish-is-ready/static/css/main.4bc03f49.css",
+    "main.js": "/dish-is-ready/static/js/main.0a082bd8.js",
+    "index.html": "/dish-is-ready/index.html",
+    "main.4bc03f49.css.map": "/dish-is-ready/static/css/main.4bc03f49.css.map",
+    "main.0a082bd8.js.map": "/dish-is-ready/static/js/main.0a082bd8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4bc03f49.css",
+    "static/js/main.0a082bd8.js"
+  ]
+}
