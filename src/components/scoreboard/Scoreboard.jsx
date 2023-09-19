@@ -1,12 +1,9 @@
 import * as React from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-
-
-
 import './Scoreboard.css'
 
-function Scoreboard() {
+export function Scoreboard() {
   const [orders, setOrders] = React.useState([
     { id: 1, status: 'ready' }
   ])
@@ -122,6 +119,3 @@ function Scoreboard() {
     </div>
   );
 }
-
-export default Scoreboard
-
