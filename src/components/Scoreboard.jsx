@@ -17,6 +17,15 @@ export function Scoreboard(props) {
         backgroundImage: `url(${LeftImage})`,
         backgroundSize: 'cover'
       }}>
+        <div style={{
+          fontSize: '2.2rem',
+          color: 'red',
+          margin: '0',
+          width: '100%',
+          textAlign: 'center'
+        }}>
+          Cooking...
+        </div>
         {props.orders.filter(order => order.status === 'open').map((element) => {
           return (
             <ModalUnstyled
@@ -38,6 +47,15 @@ export function Scoreboard(props) {
         backgroundImage: `url(${RightImage})`,
         backgroundSize: 'cover'
       }}>
+        <div style={{
+          fontSize: '2.2rem',
+          color: 'red',
+          margin: '0',
+          width: '100%',
+          textAlign: 'center'
+        }}>
+          Ready...
+        </div>
         {props.orders.filter(order => order.status === 'ready').map((element) => {
           return (
             <ModalUnstyled
