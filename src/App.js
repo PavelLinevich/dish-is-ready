@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { CreateOrder } from './components/src/CreateOrder'
-import { Scoreboard } from './components/src/Scoreboard'
+import { CreateOrder } from './components/CreateOrder'
+import { Scoreboard } from './components/Scoreboard'
 
 export function App() {
 

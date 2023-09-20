@@ -37,7 +37,7 @@ export function ModalUnstyled(props) {
         slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title" style={{ textAlign: 'center' }}>Select order status No. {props.element.id}:</h2>
+          <h2 id="unstyled-modal-title" style={{ textAlign: 'center' }}>Select order status № {props.element.id}:</h2>
           <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
             <Button
               id="unstyled-modal-description"

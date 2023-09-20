@@ -1,11 +1,22 @@
 import * as React from 'react'
 import { ModalUnstyled } from './ModalUnstyled'
+import LeftImage from '../images/left.jpg'
+import RightImage from '../images/right.jpg'
 
 export function Scoreboard(props) {
 
   return (
     <div style={{ padding: '10px', display: 'flex', gap: '10px' }}>
-      <div style={{ width: '50%', minHeight: '85vh', display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', backgroundColor: '#d32f2f' }}>
+      <div style={{
+        padding: '5px',
+        width: '50%',
+        minHeight: '85vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignContent: 'flex-start',
+        backgroundImage: `url(${LeftImage})`,
+        backgroundSize: 'cover'
+      }}>
         {props.orders.filter(order => order.status === 'open').map((element) => {
           return (
             <ModalUnstyled
@@ -17,7 +28,16 @@ export function Scoreboard(props) {
           )
         })}
       </div>
-      <div style={{ width: '50%', minHeight: '85vh', display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', backgroundColor: '#1a7f37' }}>
+      <div style={{
+        padding: '5px',
+        width: '50%',
+        minHeight: '85vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignContent: 'flex-start',
+        backgroundImage: `url(${RightImage})`,
+        backgroundSize: 'cover'
+      }}>
         {props.orders.filter(order => order.status === 'ready').map((element) => {
           return (
             <ModalUnstyled
