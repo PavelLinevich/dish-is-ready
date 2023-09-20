@@ -41,8 +41,12 @@ export function CreateOrder(props) {
     <div style={{ padding: '10px', display: 'flex', alignItems: 'baseline' }}>
       <Button
         onClick={createOrderClick}
-        style={{ marginRight: '10px', backgroundColor: '#EE693F' }}
         variant='contained'
+        style={{
+          marginRight: '10px',
+          backgroundColor: 'red',
+          fontWeight: 'bold'
+        }}
       >
         Create order
       </Button>
@@ -53,6 +57,17 @@ export function CreateOrder(props) {
         onKeyDown={onKeyPressHandler}
         value={props.inputText}
         type='number'
+        color='error'
+        InputLabelProps={{
+          style: {
+            color: '#ffffff'
+          }
+        }}
+        inputProps={{
+          style: {
+            color: "#ffffff"
+          }
+        }}
       />
     </div>
   )
