@@ -2,7 +2,7 @@
   "name": "mvp-dish",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://pavellinevich.github.io/dish-is-ready",
+  "homepage": "https://pavellinevich.github.io/dish-is-ready",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.0.0"
   }
 }
